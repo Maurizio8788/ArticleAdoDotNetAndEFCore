@@ -22,27 +22,27 @@ string query = "SELECT TOP 100 Name, ProductNumber FROM [Production].[Product]";
 
 /* **************************** otherwise *********************************/
 
-//SqlCommand command = new SqlCommand(query, sqlConnection);
+SqlCommand command = new SqlCommand(query, sqlConnection);
 
 /* **************************** execute *********************************/
 
-//try
-//{
-//    sqlConnection.Open();
-//    using SqlDataReader reader = command.ExecuteReader();
-//    while (reader.Read())
-//    {
-//        Console.WriteLine($"{reader["Name"]} - {reader["ProductNumber"]}");
-//    }
-//}
-//catch (Exception ex)
-//{
-//	throw;
-//}
-//finally
-//{
-//    sqlConnection.Close();
-//}
+try
+{
+    sqlConnection.Open();
+    using SqlDataReader reader = command.ExecuteReader();
+    while (reader.Read())
+    {
+        Console.WriteLine($"{reader["Name"]} - {reader["ProductNumber"]}");
+    }
+}
+catch (Exception ex)
+{
+    throw;
+}
+finally
+{
+    sqlConnection.Close();
+}
 
 #region InsertExample
 
@@ -216,47 +216,47 @@ string query = "SELECT TOP 100 Name, ProductNumber FROM [Production].[Product]";
 
 #region Conversion with extension method
 
-query = @"
-SELECT 
-	TOP 1
-	[BusinessEntityID],
-	[Title],
-	[FirstName],
-	[MiddleName],
-	[LastName],
-	[Suffix],
-	[JobTitle],
-	[PhoneNumber],
-	[PhoneNumberType],
-	[EmailAddress],
-	[EmailPromotion],
-	[AddressLine1],
-	[AddressLine2],
-	[City],
-	[StateProvinceName],
-	[PostalCode],
-	[CountryRegionName],
-	[AdditionalContactInfo]
-FROM [HumanResources].[vEmployee];
-";
+//query = @"
+//SELECT 
+//	TOP 1
+//	[BusinessEntityID],
+//	[Title],
+//	[FirstName],
+//	[MiddleName],
+//	[LastName],
+//	[Suffix],
+//	[JobTitle],
+//	[PhoneNumber],
+//	[PhoneNumberType],
+//	[EmailAddress],
+//	[EmailPromotion],
+//	[AddressLine1],
+//	[AddressLine2],
+//	[City],
+//	[StateProvinceName],
+//	[PostalCode],
+//	[CountryRegionName],
+//	[AdditionalContactInfo]
+//FROM [HumanResources].[vEmployee];
+//";
 
-SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+//SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
 
-try
-{
-    sqlConnection.Open();
-    using SqlDataReader reader = sqlCommand.ExecuteReader();
-    Employee employee = reader.ConvertToEntities<Employee>();
-    Console.WriteLine(employee);
-}
-catch (Exception ex)
-{
-    throw;
-}
-finally
-{
-    sqlConnection.Close();
-}
+//try
+//{
+//    sqlConnection.Open();
+//    using SqlDataReader reader = sqlCommand.ExecuteReader();
+//    Employee employee = reader.ConvertToEntities<Employee>();
+//    Console.WriteLine(employee);
+//}
+//catch (Exception ex)
+//{
+//    throw;
+//}
+//finally
+//{
+//    sqlConnection.Close();
+//}
 
 #endregion;
 
